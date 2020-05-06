@@ -7,4 +7,4 @@ ___________
 
 ___________
 
-Ссылка на проект: https://madisdead.github.io/mesto/
+Ссылка на проект: https://madisdead.github.io/mesto/index.html
