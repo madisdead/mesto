@@ -3,7 +3,7 @@
   height: 330px;
   margin: auto;
   background-color: white;
-  position: absolute;
+  position: fixed;
   top: 50vh;
   left: 50%;
   transform: translate(-50%, -50%);
