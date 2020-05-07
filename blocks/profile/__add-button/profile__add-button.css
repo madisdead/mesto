@@ -14,7 +14,7 @@
   transition: opacity 1s ease-in-out;
 }
 
-@media screen and (max-width: 882px) {
+@media screen and (max-width: 930px) {
   .profile__add-button {
     width: 282px;
     background-image: url('../../../images/add-button-mobile.svg');

@@ -6,7 +6,7 @@
   grid-column-gap: 16px;
 }
 
-@media screen and (max-width: 882px) {
+@media screen and (max-width: 930px) {
   .profile__info {
     margin: 0;
     display: flex;

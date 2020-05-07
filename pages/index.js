@@ -8,8 +8,8 @@ const close = document.querySelector('.popup__close-button');
 const popup = document.querySelector('.popup');
 
 function popupOpen() {
-  nameInput.setAttribute('value',name.textContent);
-  jobInput.setAttribute('value',job.textContent);
+  nameInput.value = name.textContent;
+  jobInput.value = job.textContent;
   popup.classList.toggle('popup_opened');
 }
 
@@ -19,10 +19,8 @@ function popupClose() {
 
 function formSubmitHandler (evt) {
     evt.preventDefault();
-    const nameValue = nameInput.value;
-    const jobValue = jobInput.value;
-    name.textContent = nameValue;
-    job.textContent = jobValue;
+    name.textContent = nameInput.value;
+    job.textContent = jobInput.value;
     popupClose();
 }
 

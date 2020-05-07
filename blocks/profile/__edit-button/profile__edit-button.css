@@ -13,7 +13,7 @@
   transition: opacity 1s ease-in-out;
 }
 
-@media screen and (max-width: 882px) {
+@media screen and (max-width: 930px) {
   .profile__edit-button {
     background-size: cover;
     width: 18px;
