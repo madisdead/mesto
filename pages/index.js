@@ -63,6 +63,7 @@ function removeCard(evt) {
   const deleteItem = evt.target.closest('.element');
   deleteItem.querySelector('.element__like').removeEventListener('click', likeCard);
   deleteItem.querySelector('.element__image').removeEventListener('click', zoomCard);
+  deleteItem.querySelector('.element__remove').removeEventListener('click', removeCard);
   deleteItem.remove();
 }
 
