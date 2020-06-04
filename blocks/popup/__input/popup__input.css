@@ -9,12 +9,10 @@
   font-size: 14px;
   line-height: 17px;
   color: #000;
-  margin-bottom: 29.74px;
 }
 
 @media screen and (max-width: 930px) {
   .popup__input {
     height: 24px;
-    margin-bottom: 20px;
   }
 }

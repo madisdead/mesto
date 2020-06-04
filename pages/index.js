@@ -13,6 +13,7 @@ const closeZoom = document.querySelector('.popup__close-button_zoom');
 const addButton = document.querySelector('.profile__add-button');
 const popupEdit = document.querySelector('.popup_edit');
 const popupAdd = document.querySelector('.popup_add');
+const popups = Array.from(document.querySelectorAll('.popup'));
 const imagePopup = document.querySelector('.popup_zoom');
 const picturePopup = document.querySelector('.popup__image');
 const captionPopup = document.querySelector('.popup__caption');
@@ -111,8 +112,23 @@ function editPopupOpen() {
   popupOpenClose(popupEdit);
 }
 
+function keyHandler(evt) {
+  if (evt.key === 'Escape') {
+    popups.forEach(item => item.classList.remove('popup_opened'));
+  }
+}
+
+function overlayHandler(evt){
+  if (evt.target !== document.querySelector('.popup__container')){
+    evt.target.classList.remove('popup_opened');
+  }
+}
+
+
 initialCards.forEach(item => addCard(item.name, item.link));
 
+document.addEventListener('click', overlayHandler);
+document.addEventListener('keydown', keyHandler);
 formElement.addEventListener('submit', formSubmitHandler);
 addElement.addEventListener('submit', addCardByUser);
 addButton.addEventListener('click', addPopupOpen);
