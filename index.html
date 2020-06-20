@@ -29,14 +29,14 @@
       <div class="popup__container">
         <div class="popup__content">
           <h2 class="popup__text">Редактировать профиль</h2>
-          <form action="#" class="popup__form popup__form_edit" novalidate>
+          <form action="#" class="popup__form popup__form_edit" name="edit" novalidate>
             <label class="popup__field">
-              <input type="text" class="popup__input popup__input_name" required
+              <input name="name" type="text" class="popup__input popup__input_name" required
                 minlength="2" maxlength="40" id="name" pattern="[А-Яа-яA-Za-z -]{1,}" placeholder="Имя">
               <span class="popup__error" id='name-input-error'></span>
             </label>
             <label class="popup__field">
-              <input type="text" class="popup__input popup__input_job" required
+              <input name="job" type="text" class="popup__input popup__input_job" required
                 minlength="2" maxlength="200" id="job" placeholder="О себе">
               <span class="popup__error" id='job-input-error'></span>
             </label>
@@ -50,14 +50,14 @@
       <div class="popup__container">
         <div class="popup__content">
           <h2 class="popup__text">Новое место</h2>
-          <form action="#" class="popup__form popup__form_add" novalidate>
+          <form name="add" action="#" class="popup__form popup__form_add" novalidate>
             <label class="popup__field">
-              <input type="text" class="popup__input popup__input_place" placeholder="Название"
+              <input name="place" type="text" class="popup__input popup__input_place" placeholder="Название"
                 id="place" required minlength="1" maxlength="30">
               <span class="popup__error" id='place-input-error'></span>
             </label>
             <label class="popup__field">
-              <input type="url" class="popup__input popup__input_link" placeholder="Ссылка на картинку"
+              <input name="link" type="url" class="popup__input popup__input_link" placeholder="Ссылка на картинку"
                 id="link" required>
               <span class="popup__error" id='link-input-error'></span>
             </label>
