@@ -22,11 +22,11 @@ export default class FormValidator {
     errorElement.textContent = '';
   }
 
-  _checkInputValidity(inputElement, obj) {
+  _checkInputValidity(inputElement) {
     if (!inputElement.validity.valid) {
-      obj._showInputError(inputElement, inputElement.validationMessage);
+      this._showInputError(inputElement, inputElement.validationMessage);
     } else {
-      obj._hideInputError(inputElement);
+      this._hideInputError(inputElement);
     }
   }
 
@@ -36,9 +36,9 @@ export default class FormValidator {
     });
   }
 
-  _toggleButtonState(obj, inputElement, inputList) {
+  _toggleButtonState(inputElement, inputList) {
     const buttonElement = this._form.querySelector(this._submitButtonSelector);
-    if (obj._hasInvalidInput(inputList, inputElement)) {
+    if (this._hasInvalidInput(inputList, inputElement)) {
       buttonElement.setAttribute('disabled', true);
       buttonElement.classList.add(this._inactiveButtonClass);
     } else {
@@ -47,21 +47,30 @@ export default class FormValidator {
     }
   }
 
-  _setEventListeners(obj) {
+  _setEventListeners() {
+    const obj = this;
     const inputList = Array.from(this._form.querySelectorAll(this._inputSelector));
     inputList.forEach((inputElement) => {
       inputElement.addEventListener('input', function() {
-        obj._checkInputValidity(inputElement, obj);
-        obj._toggleButtonState(obj, inputElement, inputList);
+        obj._checkInputValidity(inputElement);
+        obj._toggleButtonState(inputElement, inputList);
       });
+    });
+  }
+  
+  refreshValidation() {
+    const obj = this;
+    const inputList = Array.from(this._form.querySelectorAll(this._inputSelector));
+    inputList.forEach((inputElement) => {
+        obj._checkInputValidity(inputElement);
+        obj._toggleButtonState(inputElement, inputList);
     });
   }
 
   enableValidation() {
-    const obj = this;
     this._form.addEventListener('submit', function (evt) {
       evt.preventDefault();
     });
-    this._setEventListeners(obj);
+    this._setEventListeners();
   }
 }

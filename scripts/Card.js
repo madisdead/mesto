@@ -25,6 +25,7 @@ export default class Card {
 
   _removeCard() {
     this._element.remove();
+    this._element = "";
   }
 
   _setEventListeners() {
@@ -43,6 +44,7 @@ export default class Card {
     this._element = this._getTemplate();
     
     this._element.querySelector('.element__image').src = this._link;
+    this._element.querySelector('.element__image').alt = this._name;
     this._element.querySelector('.element__heading').textContent = this._name;
 
     this._setEventListeners();
