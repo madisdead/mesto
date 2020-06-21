@@ -31,17 +31,18 @@ function addCard(card, container) {
 }
 
 function refreshValidate(popup) {
+  const button = popup.querySelector(settings.submitButtonSelector);
   Array.from(popup.querySelectorAll(settings.inputSelector)).forEach(item => {
     item.classList.remove(settings.inputErrorClass);
   });
   Array.from(popup.querySelectorAll('.popup__error')).forEach(item => {
     item.textContent = '';
   });
-  popup.querySelector(settings.submitButtonSelector).removeAttribute('disabled');
-  popup.querySelector(settings.submitButtonSelector).classList.remove(settings.inactiveButtonClass);
+  button.removeAttribute('disabled');
+  button.classList.remove(settings.inactiveButtonClass);
   if (popup.classList.contains('popup_add')) {
-    popup.querySelector(settings.submitButtonSelector).setAttribute('disabled', true);
-    popup.querySelector(settings.submitButtonSelector).classList.add(settings.inactiveButtonClass);
+    button.setAttribute('disabled', true);
+    button.classList.add(settings.inactiveButtonClass);
   }
 }
 
