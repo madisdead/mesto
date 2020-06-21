@@ -1,5 +1,3 @@
-const formElement = document.querySelector('.popup__form_edit');
-const addElement = document.querySelector('.popup__form_add');
 const nameInput = document.querySelector('.popup__input_name');
 const jobInput = document.querySelector('.popup__input_job');
 const placeInput = document.querySelector('.popup__input_place');
@@ -32,17 +30,32 @@ function addCard(card, container) {
   container.prepend(card);
 }
 
+function refreshValidate(popup) {
+  Array.from(popup.querySelectorAll(settings.inputSelector)).forEach(item => {
+    item.classList.remove(settings.inputErrorClass);
+  });
+  Array.from(popup.querySelectorAll('.popup__error')).forEach(item => {
+    item.textContent = '';
+  });
+  popup.querySelector(settings.submitButtonSelector).removeAttribute('disabled');
+  popup.querySelector(settings.submitButtonSelector).classList.remove(settings.inactiveButtonClass);
+  if (popup.classList.contains('popup_add')) {
+    popup.querySelector(settings.submitButtonSelector).setAttribute('disabled', true);
+    popup.querySelector(settings.submitButtonSelector).classList.add(settings.inactiveButtonClass);
+  }
+}
+
 export function popupOpenClose(popup) {
   if (popup.classList.contains('popup_opened')){
     popup.removeEventListener('mousedown', overlayHandler);
     document.removeEventListener('keydown', keyHandler);
+    addButton.addEventListener('click', addPopupOpen);
   } else {
+    addButton.removeEventListener('click', addPopupOpen);
     popup.addEventListener('mousedown', overlayHandler);
     document.addEventListener('keydown', keyHandler);
-    validatorEdit.refreshValidation();
-    if(popup.classList.contains('popup_add')) {
-      popup.querySelector('.popup__button').setAttribute('disabled', true);
-      popup.querySelector('.popup__button').classList.add('popup__button_disabled');
+    if (popup !== imagePopup) {
+      refreshValidate(popup);
     }
   }
   popup.classList.toggle('popup_opened');
@@ -87,7 +100,7 @@ export function keyHandler(evt) {
 }
 
 export function overlayHandler(evt){
-  if (!evt.target.classList.contains('.popup__container')){
+  if (evt.target.classList.contains('popup')){
     popupOpenClose(evt.target);
   }
 }
@@ -101,8 +114,8 @@ initialCards.forEach((item) => {
 
 validatorEdit.enableValidation();
 validatorAdd.enableValidation();
-formElement.addEventListener('submit', formSubmitHandler);
-addElement.addEventListener('submit', addCardByUser);
+formEdit.addEventListener('submit', formSubmitHandler);
+formAdd.addEventListener('submit', addCardByUser);
 addButton.addEventListener('click', addPopupOpen);
 open.addEventListener('click', editPopupOpen);
 closeEdit.addEventListener('click', () => popupOpenClose(popupEdit));

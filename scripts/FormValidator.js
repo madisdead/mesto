@@ -58,15 +58,6 @@ export default class FormValidator {
     });
   }
   
-  refreshValidation() {
-    const obj = this;
-    const inputList = Array.from(this._form.querySelectorAll(this._inputSelector));
-    inputList.forEach((inputElement) => {
-        obj._checkInputValidity(inputElement);
-        obj._toggleButtonState(inputElement, inputList);
-    });
-  }
-
   enableValidation() {
     this._form.addEventListener('submit', function (evt) {
       evt.preventDefault();
