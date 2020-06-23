@@ -1,27 +1,22 @@
 const nameInput = document.querySelector('.popup__input_name');
 const jobInput = document.querySelector('.popup__input_job');
-const placeInput = document.querySelector('.popup__input_place');
-const linkInput = document.querySelector('.popup__input_link');
 const name = document.querySelector('.profile__name');
 const job = document.querySelector('.profile__job');
 const open = document.querySelector('.profile__edit-button');
 const closeEdit = document.querySelector('.popup__close-button_edit');
 const closeAdd = document.querySelector('.popup__close-button_add');
 const closeZoom = document.querySelector('.popup__close-button_zoom');
-const addButton = document.querySelector('.profile__add-button');
 const popupEdit = document.querySelector('.popup_edit');
-const popupAdd = document.querySelector('.popup_add');
-const popups = Array.from(document.querySelectorAll('.popup'));
-export const imagePopup = document.querySelector('.popup_zoom');
-export const picturePopup = document.querySelector('.popup__image');
-export const captionPopup = document.querySelector('.popup__caption');
 const cards = document.querySelector('.elements');
 const cardSelector = '#card';
 const formAdd = document.querySelector(`.popup__form_add`);
 const formEdit = document.querySelector(`.popup__form_edit`);
+const popupAdd = document.querySelector('.popup_add');
+const addButton = document.querySelector('.profile__add-button');
 const validatorEdit = new FormValidator(settings, formEdit);
 const validatorAdd = new FormValidator(settings, formAdd);
 
+import {popupOpenClose, keyHandler, overlayHandler, imagePopup, placeInput, linkInput} from './utils.js';
 import FormValidator from './FormValidator.js';
 import Card from './Card.js';
 import {initialCards, settings} from './data.js';
@@ -30,43 +25,17 @@ function addCard(card, container) {
   container.prepend(card);
 }
 
-function refreshValidate(popup) {
-  const button = popup.querySelector(settings.submitButtonSelector);
-  Array.from(popup.querySelectorAll(settings.inputSelector)).forEach(item => {
-    item.classList.remove(settings.inputErrorClass);
-  });
-  Array.from(popup.querySelectorAll('.popup__error')).forEach(item => {
-    item.textContent = '';
-  });
-  button.removeAttribute('disabled');
-  button.classList.remove(settings.inactiveButtonClass);
-  if (popup.classList.contains('popup_add')) {
-    button.setAttribute('disabled', true);
-    button.classList.add(settings.inactiveButtonClass);
-  }
-}
-
-export function popupOpenClose(popup) {
-  if (popup.classList.contains('popup_opened')){
-    popup.removeEventListener('mousedown', overlayHandler);
-    document.removeEventListener('keydown', keyHandler);
-    addButton.addEventListener('click', addPopupOpen);
-  } else {
-    addButton.removeEventListener('click', addPopupOpen);
-    popup.addEventListener('mousedown', overlayHandler);
-    document.addEventListener('keydown', keyHandler);
-    if (popup !== imagePopup) {
-      refreshValidate(popup);
-    }
-  }
-  popup.classList.toggle('popup_opened');
+function addPopupOpen() {
+  placeInput.value = '';
+  linkInput.value = '';
+  popupOpenClose(popupAdd, validatorAdd);
 }
 
 function formSubmitHandler (evt) {
     evt.preventDefault();
     name.textContent = nameInput.value;
     job.textContent = jobInput.value;
-    popupOpenClose(popupEdit);
+    popupOpenClose(popupEdit, validatorEdit);
 }
 
 function addCardByUser (evt) {
@@ -79,31 +48,13 @@ function addCardByUser (evt) {
   const cardElement = card.generateCard();
 
   addCard(cardElement, cards);
-  popupOpenClose(popupAdd);
-}
-
-function addPopupOpen() {
-  placeInput.value = '';
-  linkInput.value = '';
-  popupOpenClose(popupAdd);
+  popupOpenClose(popupAdd, validatorAdd);
 }
 
 function editPopupOpen() {
   nameInput.value = name.textContent;
   jobInput.value = job.textContent;
-  popupOpenClose(popupEdit);
-}
-
-export function keyHandler(evt) {
-  if (evt.key === 'Escape') {
-    popupOpenClose(document.querySelector('.popup_opened'));
-  }
-}
-
-export function overlayHandler(evt){
-  if (evt.target.classList.contains('popup')){
-    popupOpenClose(evt.target);
-  }
+  popupOpenClose(popupEdit, validatorEdit);
 }
 
 initialCards.forEach((item) => {
@@ -119,6 +70,6 @@ formEdit.addEventListener('submit', formSubmitHandler);
 formAdd.addEventListener('submit', addCardByUser);
 addButton.addEventListener('click', addPopupOpen);
 open.addEventListener('click', editPopupOpen);
-closeEdit.addEventListener('click', () => popupOpenClose(popupEdit));
-closeAdd.addEventListener('click', () => popupOpenClose(popupAdd));
+closeEdit.addEventListener('click', () => popupOpenClose(popupEdit, validatorEdit));
+closeAdd.addEventListener('click', () => popupOpenClose(popupAdd, validatorAdd));
 closeZoom.addEventListener('click', () => popupOpenClose(imagePopup));

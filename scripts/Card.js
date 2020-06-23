@@ -1,4 +1,4 @@
-import {popupOpenClose, keyHandler, overlayHandler, imagePopup, picturePopup, captionPopup} from './index.js';
+import {popupOpenClose, keyHandler, overlayHandler, imagePopup, picturePopup, captionPopup} from './utils.js';
 
 export default class Card {
   constructor(data, cardSelector) {
@@ -25,7 +25,7 @@ export default class Card {
 
   _removeCard() {
     this._element.remove();
-    this._element = "";
+    this._element = null;
   }
 
   _setEventListeners() {
