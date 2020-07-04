@@ -1,7 +1,8 @@
 import './index.css';
 import FormValidator from '../components/FormValidator.js';
 import Card from '../components/Card.js';
-import {initialCards, settings, userData, imagePopupSelectors} from '../utils/constants.js';
+import {initialCards, settings, userData, imagePopupSelectors, popupEditSelector, popupAddSelector,
+  popupZoomSelector, cardsSelector, cardSelector} from '../utils/constants.js';
 import Section from '../components/Section.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js';
@@ -12,11 +13,6 @@ const jobInput = document.querySelector('.popup__input_job');
 const placeInput = document.querySelector('.popup__input_place');
 const linkInput = document.querySelector('.popup__input_link');
 const open = document.querySelector('.profile__edit-button');
-const popupEditSelector = '.popup_edit';
-const popupAddSelector = '.popup_add';
-const popupZoomSelector = '.popup_zoom';
-const cardsSelector = '.elements';
-const cardSelector = '#card';
 const formAdd = document.querySelector(`.popup__form_add`);
 const formEdit = document.querySelector(`.popup__form_edit`);
 const addButton = document.querySelector('.profile__add-button');

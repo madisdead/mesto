@@ -39,3 +39,8 @@ export const imagePopupSelectors = {
   image: '.popup__image',
   caption: '.popup__caption'
 };
+export const popupEditSelector = '.popup_edit';
+export const popupAddSelector = '.popup_add';
+export const popupZoomSelector = '.popup_zoom';
+export const cardsSelector = '.elements';
+export const cardSelector = '#card';
