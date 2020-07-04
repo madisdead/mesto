@@ -34,17 +34,8 @@ export const settings = {
 export const userData = {
   nameSelector: '.profile__name',
   jobSelector: '.profile__job'
-}
-export const nameInput = document.querySelector('.popup__input_name');
-export const jobInput = document.querySelector('.popup__input_job');
-export const placeInput = document.querySelector('.popup__input_place');
-export const linkInput = document.querySelector('.popup__input_link');
-export const open = document.querySelector('.profile__edit-button');
-export const popupEditSelector = '.popup_edit';
-export const popupAddSelector = '.popup_add';
-export const popupZoomSelector = '.popup_zoom';
-export const cardsSelector = '.elements';
-export const cardSelector = '#card';
-export const formAdd = document.querySelector(`.popup__form_add`);
-export const formEdit = document.querySelector(`.popup__form_edit`);
-export const addButton = document.querySelector('.profile__add-button');
+};
+export const imagePopupSelectors = {
+  image: '.popup__image',
+  caption: '.popup__caption'
+};
