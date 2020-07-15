@@ -1,8 +1,10 @@
 export default class Card {
-  constructor({ data, handleCardClick }, selector) {
-    this._place = data.place;
+  constructor({ data, handleCardClick, handleLikeClick }, selector) {
+    this._name = data.name;
     this._link = data.link;
     this._handleCardClick = handleCardClick;
+    this._handleLikeClick = handleLikeClick;
+
     this._selector = selector;
   }
 
@@ -12,33 +14,24 @@ export default class Card {
     return cardElement;
   }
 
-  _likeCard() {
-    this._element.querySelector('.element__like').classList.toggle('element__like_active');
-  }
-
-  _removeCard() {
-    this._element.remove();
-    this._element = null;
-  }
-
   _setEventListeners() {
     this._element.querySelector('.element__like').addEventListener('click', () => {
-      this._likeCard();
+      this._handleLikeClick();
     });
     this._element.querySelector('.element__image').addEventListener('click', (evt) => {
       this._handleCardClick(evt);
     });
-    this._element.querySelector('.element__remove').addEventListener('click', () => {
-      this._removeCard();
-    });
+    
   }
 
-  generateCard() {
+  generateCard(numberOflikes) {
     this._element = this._getTemplate();
-    
+    this._likeElement = this._element.querySelector('.element__like-counter');
+
     this._element.querySelector('.element__image').src = this._link;
-    this._element.querySelector('.element__image').alt = this._place;
-    this._element.querySelector('.element__heading').textContent = this._place;
+    this._element.querySelector('.element__image').alt = this._name;
+    this._element.querySelector('.element__heading').textContent = this._name;
+    this._likeElement.textContent = numberOflikes;
 
     this._setEventListeners();
 

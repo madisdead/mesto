@@ -13,6 +13,7 @@
 @import url('./__button/_disabled/popup__button_disabled.css');
 @import url('./__input/_type/popup__input_type_error.css');
 @import url('./__error/_active/popup__error_active.css');
+@import url('./__button/_confirm/popup__button_confirm.css');
 
 .popup {
   position: fixed;
